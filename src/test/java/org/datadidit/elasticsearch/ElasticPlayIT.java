@@ -19,6 +19,7 @@ import org.elasticsearch.search.aggregations.metrics.valuecount.ValueCountAggreg
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -90,6 +91,7 @@ public class ElasticPlayIT {
 	}
 	
 	@Test
+	@Ignore
 	public void testAggregation() {
 		//https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-aggs.html
 		//TODO: Figure this out???
