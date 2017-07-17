@@ -1,5 +1,7 @@
 package org.datadidit.elasticsearch;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +15,11 @@ import org.apache.camel.component.elasticsearch5.ElasticsearchEndpoint;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.datadidit.camel.GeoEnrichmentProcessor;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,10 +27,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ElasticSearchCamelIT extends CamelTestSupport {
+	private static final String indexName = "twitter";
+	
+	private static final String indexType = "tweet";
+	
+	private static final String HOSTNAME = "127.0.0.1";
+	
 	@Produce(uri = "direct:start")
 	protected ProducerTemplate template;
 
-	@EndpointInject(uri = "elasticsearch5://elasticsearch?indexName=twitter&indexType=tweet&operation=BULK_INDEX&ip=127.0.0.1&port=9300")
+	@EndpointInject(uri = "elasticsearch5://elasticsearch?indexName="+indexName+"&indexType="+indexType+"&operation=BULK_INDEX&ip=127.0.0.1&port=9300")
 	protected ElasticsearchEndpoint elastic;
 	
 	@EndpointInject(uri = "mock:result")
@@ -32,14 +45,21 @@ public class ElasticSearchCamelIT extends CamelTestSupport {
 	private static String apiKey;
 	
 	private ObjectMapper mapper = new ObjectMapper(); 
+	
+	private static TransportClient client; 
 
 	@BeforeClass
-	public static void setupGeo(){
+	public static void setupGeo() throws UnknownHostException{
 		apiKey = System.getenv("apiKey");
 		if(apiKey==null)
 			fail("Unable to get Api Key set up environment variable for this test!");
 		else
 			System.out.println("API Key is "+apiKey);
+		
+		client = new PreBuiltTransportClient(Settings.EMPTY)
+		        .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(HOSTNAME), 9300));
+		//IndexResponse response = client.prepareIndex(indexName, indexType).get();
+
 	}
 	
 	@Test

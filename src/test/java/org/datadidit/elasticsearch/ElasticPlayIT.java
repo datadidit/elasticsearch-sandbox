@@ -91,6 +91,22 @@ public class ElasticPlayIT {
 	}
 	
 	@Test
+	public void testQueryDSLCamel() {
+		//https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-query-dsl.html
+		QueryBuilder qb = matchAllQuery();
+
+		SearchResponse response = client.prepareSearch("camelTest")
+				.setTypes("test")
+				.setSearchType(SearchType.DEFAULT)
+				.setQuery(matchAllQuery())
+				.get();
+		
+		for(SearchHit hit : response.getHits()) {
+			System.out.println(hit.getSourceAsMap());
+		}
+	}
+	
+	@Test
 	@Ignore
 	public void testAggregation() {
 		//https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-aggs.html
