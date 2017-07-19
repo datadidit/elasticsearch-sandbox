@@ -1,0 +1,7 @@
+= ElasticSearch Sandbox
+
+* Kibana instructions should be updated for Windows
+* Defining Indexes: https://www.elastic.co/guide/en/kibana/current/tutorial-define-index.html
+* Time data does not resolve by default due to it not being in default time range 
+* Visualizing Info: https://www.elastic.co/guide/en/kibana/current/tutorial-visualizing.html
+
