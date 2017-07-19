@@ -5,3 +5,5 @@
 * Time data does not resolve by default due to it not being in default time range 
 * Visualizing Info: https://www.elastic.co/guide/en/kibana/current/tutorial-visualizing.html
 
+Mappings:
+* Geopoint: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
