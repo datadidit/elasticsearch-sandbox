@@ -3,3 +3,11 @@
 Elastic Search Java Client Docs: https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html
 
 Camel Elastic5 docs: https://github.com/apache/camel/blob/master/components/camel-elasticsearch5/src/main/docs/elasticsearch5-component.adoc
+
+* Kibana instructions should be updated for Windows
+* Defining Indexes: https://www.elastic.co/guide/en/kibana/current/tutorial-define-index.html
+* Time data does not resolve by default due to it not being in default time range 
+* Visualizing Info: https://www.elastic.co/guide/en/kibana/current/tutorial-visualizing.html
+
+Mappings:
+* Geopoint: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
