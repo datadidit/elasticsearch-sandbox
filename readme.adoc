@@ -1,0 +1,5 @@
+= Elastic Search Sandbox
+
+Elastic Search Java Client Docs: https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html
+
+Camel Elastic5 docs: https://github.com/apache/camel/blob/master/components/camel-elasticsearch5/src/main/docs/elasticsearch5-component.adoc
