@@ -12,6 +12,8 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.reindex.BulkByScrollResponse;
+import org.elasticsearch.index.reindex.DeleteByQueryAction;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.sum.SumAggregationBuilder;
@@ -51,12 +53,12 @@ public class ElasticPlayIT {
 		    "}";
 		
 		//Index Data
-		IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
+		IndexResponse response = client.prepareIndex("test", "data", "1")
 		        .setSource(json)
 		        .get();
 		
 		//GET Indexed Data 
-		GetResponse getResponse = client.prepareGet("twitter", "tweet", "1").get();
+		GetResponse getResponse = client.prepareGet("test", "data", "1").get();
 		System.out.println(getResponse);		
 	}
 	
@@ -95,8 +97,8 @@ public class ElasticPlayIT {
 		//https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-query-dsl.html
 		QueryBuilder qb = matchAllQuery();
 
-		SearchResponse response = client.prepareSearch("camelTest")
-				.setTypes("test")
+		SearchResponse response = client.prepareSearch("twitter")
+				.setTypes("tweet")
 				.setSearchType(SearchType.DEFAULT)
 				.setQuery(matchAllQuery())
 				.get();
@@ -105,6 +107,29 @@ public class ElasticPlayIT {
 			System.out.println(hit.getSourceAsMap());
 		}
 	}
+	
+	@Test
+	public void testQueryAndDelete() {
+		//https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/java-query-dsl.html
+		QueryBuilder qb = matchAllQuery();
+
+		SearchResponse response = client.prepareSearch("twitter")
+				.setTypes("tweet")
+				.setSearchType(SearchType.DEFAULT)
+				.setQuery(matchAllQuery())
+				.get();
+		
+		for(SearchHit hit : response.getHits()) {
+			client.prepareDelete("twitter", "tweet", hit.getId().toString()).get();
+		}
+		
+		BulkByScrollResponse response2 =
+			    DeleteByQueryAction.INSTANCE.newRequestBuilder(client)
+			        .filter(qb) 
+			        .source("twitter")                                  
+			        .get(); 
+	}
+	
 	
 	@Test
 	@Ignore

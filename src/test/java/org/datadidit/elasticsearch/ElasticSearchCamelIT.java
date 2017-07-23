@@ -15,7 +15,6 @@ import org.apache.camel.component.elasticsearch5.ElasticsearchEndpoint;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.datadidit.camel.GeoEnrichmentProcessor;
-import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -27,9 +26,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ElasticSearchCamelIT extends CamelTestSupport {
-	private static final String indexName = "twitter";
+	private static final String indexName = "test";
 	
-	private static final String indexType = "tweet";
+	private static final String indexType = "data";
 	
 	private static final String HOSTNAME = "127.0.0.1";
 	

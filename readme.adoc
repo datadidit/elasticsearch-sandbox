@@ -11,3 +11,14 @@ Camel Elastic5 docs: https://github.com/apache/camel/blob/master/components/came
 
 Mappings:
 * Geopoint: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
+* Mapping Object: https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html
+
+* Example files: https://www.elastic.co/guide/en/kibana/current/tutorial-load-dataset.html Need to move to gitlfs at some point. 
+
+Elastic Default Endpoint: http://localhost:9200/
+
+Kibana Default Endpoint: http://localhost:5601/app/kibana
+
+== Trouble Shooting
+
+View test Json data from file system: https://github.com/gildas-lormeau/JSONView-for-Chrome/issues/14
