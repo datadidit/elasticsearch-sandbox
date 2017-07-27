@@ -49,6 +49,7 @@ public class ElasticSearchIngestBackupDataCamelIT extends CamelTestSupport{
 				from(backupEndpoint)
 				.process(new BackupDataProcessor())
 					.log("Body ${body}")
+					.to(elastic)
 					.to(result);
 			}
 		};
