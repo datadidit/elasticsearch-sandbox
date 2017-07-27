@@ -10,6 +10,10 @@ Camel Elastic5 docs: https://github.com/apache/camel/blob/master/components/came
 * Visualizing Info: https://www.elastic.co/guide/en/kibana/current/tutorial-visualizing.html
 
 Mappings:
+
+* Good read on the available mapping endpoints: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-put-mapping.html
+* Search by type _type:<type>
+* https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html
 * Geopoint: https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html
 * Mapping Object: https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html
 
