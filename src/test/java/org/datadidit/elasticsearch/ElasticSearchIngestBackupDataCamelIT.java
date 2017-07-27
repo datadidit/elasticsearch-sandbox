@@ -9,11 +9,10 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.elasticsearch5.ElasticsearchEndpoint;
 import org.apache.camel.component.file.FileEndpoint;
 import org.apache.camel.component.jackson.JacksonDataFormat;
+import org.apache.camel.component.jackson.ListJacksonDataFormat;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
-
-import com.datadidit.elasticsearch.camel.BackupDataProcessor;
 
 /*
  * Test to see if I can unmarshal and reingest data in backup 
@@ -46,9 +45,10 @@ public class ElasticSearchIngestBackupDataCamelIT extends CamelTestSupport{
 	protected RouteBuilder createRouteBuilder() {
 		return new RouteBuilder() {
 			public void configure() {
+                JacksonDataFormat format = new ListJacksonDataFormat();
+
 				from(backupEndpoint)
-				.process(new BackupDataProcessor())
-					.log("Body ${body}")
+				.unmarshal(format)
 					.to(elastic)
 					.to(result);
 			}
