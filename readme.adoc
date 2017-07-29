@@ -2,6 +2,8 @@
 
 Elastic Search Java Client Docs: https://www.elastic.co/guide/en/elasticsearch/client/java-api/current/index.html
 
+More Example: https://github.com/elastic/examples 
+
 Camel Elastic5 docs: https://github.com/apache/camel/blob/master/components/camel-elasticsearch5/src/main/docs/elasticsearch5-component.adoc
 
 * Kibana instructions should be updated for Windows
@@ -22,6 +24,14 @@ Mappings:
 Elastic Default Endpoint: http://localhost:9200/
 
 Kibana Default Endpoint: http://localhost:5601/app/kibana
+
+X-Pack:
+
+Need X-Pack for security, reports, etc.... Make sure you configure elastic and kibana for the plugin. If you don't then kibana will give you a license not found error.
+
+https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html
+
+Java Client: https://www.elastic.co/guide/en/x-pack/current/java-clients.html
 
 == Trouble Shooting
 

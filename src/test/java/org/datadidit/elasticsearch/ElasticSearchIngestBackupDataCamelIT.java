@@ -1,9 +1,5 @@
 package org.datadidit.elasticsearch;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.camel.EndpointInject;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.elasticsearch5.ElasticsearchEndpoint;
