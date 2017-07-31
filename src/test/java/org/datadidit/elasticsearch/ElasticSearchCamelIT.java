@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.ConfigurationException;
+
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
@@ -89,7 +91,7 @@ public class ElasticSearchCamelIT extends CamelTestSupport {
 	@Override
 	protected RouteBuilder createRouteBuilder() {
 		return new RouteBuilder() {
-			public void configure() {
+			public void configure() throws ConfigurationException {
 				GeoEnrichmentProcessor processor = new GeoEnrichmentProcessor(apiKey, "City,State,Country", "geometry");
 				
 				from("direct:start")

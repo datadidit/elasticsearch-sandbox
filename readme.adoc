@@ -33,6 +33,8 @@ https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html
 
 Java Client: https://www.elastic.co/guide/en/x-pack/current/java-clients.html
 
+Birthdate Range Query Example: Birthdate:["Jan 01, 1900" TO "Jan 01, 2017"]
+
 == Trouble Shooting
 
 View test Json data from file system: https://github.com/gildas-lormeau/JSONView-for-Chrome/issues/14

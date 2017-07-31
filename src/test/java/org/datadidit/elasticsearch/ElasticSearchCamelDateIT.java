@@ -47,7 +47,7 @@ public class ElasticSearchCamelDateIT extends CamelTestSupport {
 	@Test
 	public void testFlow() throws InterruptedException {
 		Integer expectedCount = 1;
-		Integer waitTime = 10;
+		Integer waitTime = 60;
 		result.expectedMinimumMessageCount(expectedCount);
 		
 		/*
